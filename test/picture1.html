@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>gerald</title>
+	<link rel="stylesheet" type="text/css" href="galaryajson.css">
+</head>
+<body>
+<h1>Gallary</h1>
+<div id="container">
+	<p>
+		<img src="../image/s1.jpg" alt="picture" />
+	</p>
+	<p class="caption">
+	Picture 1 </p>
+</div>
+<p id="menu">
+	<a href="picture1.html">Picture 1</a> |
+	<a href="picture2.html">Picture 2</a> |
+	<a href="picture3.html">Picture 3</a> |
+</p>
+<script src="../javascript/jquery-1.12.0.min.js"></script>
+<script type="text/javascript">
+	var $pictures, $menu_links = $("menu a"), $title = $("title"), $image = $("#conatiner img"), $caption =$(".caption");
+	$.ajax({
+		url : "jqueryjson.json",
+		success: function(data){
+			$pictures = data;
+		}
+	})
+	$menu_links.click(function(){
+		var index = $mnenu_links.index(this);
+		var $picture = $pictures[index].picture;
+		$caption.text($picture.caption);
+		$image.attr("src", $pictures.source);
+		$title.text("Gallary 1 - "+ $picture.caption);
+		return false;
+	});
+	
+</script>
+</body>
+</html>
